@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "906835870378",
+    "project_id": "demochatcaa",
+    "storage_bucket": "demochatcaa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906835870378:android:f7ba9d8f2895633cba46d3",
+        "android_client_info": {
+          "package_name": "com.example.caa_test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906835870378-5h9tt8v3ljl90mh1hetgug64p4mumc36.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.caa_test",
+            "certificate_hash": "34d1b4ab2ad706f3770bd7d3d6732e969e4a6c51"
+          }
+        },
+        {
+          "client_id": "906835870378-7j7cqauq43esaug8jnvgq6cn0jtfb5v0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8goWmp3WMWGQK7ZxUgb3PBHiGflpbyHU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906835870378-7j7cqauq43esaug8jnvgq6cn0jtfb5v0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906835870378-lgdql90tp8qit7jmp3762beriiu45l83.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.caaTest"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:906835870378:android:e3fb70c85fd8518fba46d3",
+        "android_client_info": {
+          "package_name": "com.example.demo_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "906835870378-7j7cqauq43esaug8jnvgq6cn0jtfb5v0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8goWmp3WMWGQK7ZxUgb3PBHiGflpbyHU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "906835870378-7j7cqauq43esaug8jnvgq6cn0jtfb5v0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "906835870378-lgdql90tp8qit7jmp3762beriiu45l83.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.caaTest"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
