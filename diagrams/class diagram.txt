@@ -1,0 +1,314 @@
+@startuml
+set namespaceSeparator ::
+
+class "caa_test::components::chat_bubble.dart::ChatBubble" {
+  +String message
+  +Widget build()
+}
+
+
+
+
+class "caa_test::firebase_options.dart::DefaultFirebaseOptions" {
+  {static} +FirebaseOptions web
+  {static} +FirebaseOptions android
+  {static} +FirebaseOptions ios
+  {static} +FirebaseOptions macos
+  {static} +FirebaseOptions windows
+  {static} +FirebaseOptions currentPlatform
+}
+
+
+class "caa_test::main.dart::MyApp" {
+  +Widget build()
+}
+
+
+class "caa_test::model::message.dart::Message" {
+  +String senderId
+  +String senderEmail
+  +String receiverId
+  +Timestamp timestamp
+  +String message
+  +bool isSticker
+  +Map<String, dynamic> toMap()
+}
+
+class "caa_test::model::sticker_folder_view.dart::StickerFolderView" {
+  +FolderContent folder
+  +dynamic Function(String, String) onStickerSelected
+  +Widget build()
+}
+
+"caa_test::model::sticker_folder_view.dart::StickerFolderView" o-- "caa_test::model::sticker_picker.dart::FolderContent"
+
+class "caa_test::model::sticker_picker.dart::StickerPicker" {
+  +dynamic Function(String, String) onStickerSelected
+  +_StickerPickerState createState()
+}
+
+
+class "caa_test::model::sticker_picker.dart::_StickerPickerState" {
+  +Map<String, FolderContent> localFolders
+  +FolderContent? firebaseUserFolder
+  -ScrollController _scrollController
+  -ImagePicker _picker
+  -FirebaseAuth _auth
+  -FirebaseFirestore _firestore
+  +Directory baseStickersDirectory
+  +bool isLoading
+  -bool _isTutor
+  -bool _isBccUser
+  -String? _tutoreId
+  +void initState()
+  -dynamic _initializeData()
+  -dynamic _getAndSetBaseDirectory()
+  -dynamic _requestPermissions()
+  -dynamic _loadUserRoleAndFolders()
+  -dynamic _loadFolders()
+  -dynamic _loadFirebaseUserFolder()
+  -dynamic _pickAndUploadSticker()
+  -void _openFolderView()
+  +Widget build()
+  -Widget _buildFolderTile()
+}
+
+"caa_test::model::sticker_picker.dart::_StickerPickerState" o-- "caa_test::model::sticker_picker.dart::FolderContent"
+
+class "caa_test::model::sticker_picker.dart::FolderContent" {
+  +String name
+  +String? iconPath
+  +List<String> items
+  +bool isLocal
+}
+
+class "caa_test::pages::chat::chat_service.dart::ChatService" {
+  -FirebaseFirestore _firestore
+  +dynamic sendMessage()
+  +Stream<QuerySnapshot<Object?>> getMessages()
+}
+
+
+class "caa_test::pages::chat_page.dart::ChatPage" {
+  +String receiverUserEmail
+  +String receiverUserId
+  +State<ChatPage> createState()
+}
+
+
+class "caa_test::pages::chat_page.dart::_ChatPageState" {
+  -TextEditingController _messageController
+  -ChatService _chatService
+  -FirebaseAuth _firebaseAuth
+  -ScrollController _scrollController
+  +List<String> selectedStickers
+  +double stickerSize
+  -FirebaseFirestore _firestore
+  -CollectionReference<Object?> _userStickersCollection
+  -FirebaseStorage _firebaseStorage
+  -bool _isTutor
+  -bool _isBccChat
+  -String _receiverFullName
+  +void initState()
+  -dynamic _fetchReceiverFullName()
+  -dynamic _checkUserConditions()
+  +void toggleStickerSelection()
+  +dynamic uploadUserSticker()
+  +dynamic uploadFileToFirebase()
+  +void sendSelectedStickers()
+  +Widget build()
+  -Widget _buildStickerPreview()
+  -Widget _buildMessageList()
+  -Widget _buildMessageItem()
+  -void _sendMessage()
+  -Widget _buildMessageInput()
+  -void _showSettingsDialog()
+  -void _showStickerSizeDialog()
+}
+
+"caa_test::pages::chat_page.dart::_ChatPageState" o-- "caa_test::pages::chat::chat_service.dart::ChatService"
+
+class "caa_test::pages::friend_request_page.dart::FriendRequestsPage" {
+  +Widget build()
+  -dynamic _acceptRequest()
+  -dynamic _rejectRequest()
+  -dynamic _decrementFriendRequestCount()
+}
+
+
+class "caa_test::pages::home_page.dart::HomePage" {
+  +State<HomePage> createState()
+}
+
+
+class "caa_test::pages::home_page.dart::_HomePageState" {
+  -FirebaseAuth _auth
+  +bool isBccUser
+  +bool isLoading
+  +bool isTutor
+  +List<String> allowedContacts
+  +List<String> friends
+  +int friendRequestCount
+  -int _currentIndex
+  +void initState()
+  +void didChangeDependencies()
+  -dynamic _updateChatList()
+  -dynamic _updateFriendRequestCount()
+  -dynamic _checkUserBccStatus()
+  -void _navigateToFriendRequests()
+  +void navigateToSettingsPage()
+  +void navigateToSearchPage()
+  -void _onBottomNavTap()
+  +void navigateToRegistrationPage()
+  +void signOut()
+  +Widget build()
+  -Widget _buildUserList()
+  -Widget _buildUserListItem()
+}
+
+
+class "caa_test::pages::login_page.dart::LoginPage" {
+  +void Function()? onTap
+  +State<LoginPage> createState()
+}
+
+
+class "caa_test::pages::login_page.dart::_LoginPageState" {
+  +TextEditingController emailController
+  +TextEditingController passwordController
+  +void signIn()
+  +void signInWithGoogle()
+  +void navigateToRegisterPage()
+  +Widget build()
+}
+
+class "caa_test::pages::register_page.dart::RegisterPage" {
+  +void Function()? onTap
+  +bool isCalledFromLogin
+  +String? currentUserUid
+  +State<RegisterPage> createState()
+}
+
+
+class "caa_test::pages::register_page.dart::_RegisterPageState" {
+  +TextEditingController emailController
+  +TextEditingController passwordController
+  +TextEditingController confirmPasswordController
+  +TextEditingController nameController
+  +TextEditingController surnameController
+  +bool isLoading
+  +bool isTutor
+  +void dispose()
+  +void signUp()
+  +void signUpWithGoogle()
+  +Widget build()
+}
+
+class "caa_test::pages::SearchPage.dart::SearchPage" {
+  +State<SearchPage> createState()
+}
+
+
+class "caa_test::pages::SearchPage.dart::_SearchPageState" {
+  -String _searchQuery
+  -List<String> _friendIds
+  -Set<String> _sentFriendRequests
+  +void initState()
+  -dynamic _fetchFriends()
+  -void _listenToFriendRequests()
+  -void _showTutorDetails()
+  +Widget build()
+  -dynamic _incrementFriendRequestCount()
+}
+class "caa_test::pages::setting_page.dart::SettingsPage" {
+  +State<SettingsPage> createState()
+}
+
+
+class "caa_test::pages::setting_page.dart::_SettingsPageState" {
+  -FirebaseAuth _auth
+  -FirebaseStorage _storage
+  -ImagePicker _picker
+  -String _userName
+  -String _userSurname
+  -String _userId
+  -String _profileImageUrl
+  -double _stickerSize
+  -String _statusMessage
+  -Map<String, bool> _folderVisibility
+  +bool isLoading
+  -bool _isTutore
+  -bool _isBccUser
+  -String? _tutoreId
+  -List<Map<String, String>> _bccUsers
+  -String? _selectedManagedUserId
+  +void initState()
+  -dynamic _initializeSettingsData()
+  -dynamic _loadUserData()
+  -dynamic _loadManagedUsers()
+  -dynamic _pickAndUploadImage()
+  -dynamic _loadStickerSize()
+  -void _saveStickerSize()
+  -dynamic _listLocalStickerSubdirs()
+  -dynamic _loadStickerFolders()
+  -dynamic _updateFolderVisibility()
+  -dynamic _downloadFolder()
+  -dynamic _startDownload()
+  -void _showSnackBar()
+  -Widget _buildTutorManagementArea()
+  +Widget build()
+}
+
+class "caa_test::pages::UserManagementPage.dart::UserChatManagementPage" {
+  +String receiverUserId
+  +String tutorUserId
+  +_UserChatManagementPageState createState()
+}
+
+
+class "caa_test::pages::UserManagementPage.dart::_UserChatManagementPageState" {
+  -Map<String, bool> _userSelection
+  -Map<String, String> _userDisplayNames
+  -List<String> _tutorFriends
+  -List<String> _tutorBccUsers
+  +void initState()
+  -dynamic _fetchTutorFriendsAndBccUsersAndContacts()
+  +Widget build()
+  -dynamic _saveChatPermissions()
+}
+
+
+class "caa_test::services::auth::auth_gate.dart::AuthGate" {
+  +Widget build()
+}
+
+
+class "caa_test::services::auth::auth_service.dart::AuthService" {
+  -FirebaseAuth _firebaseAuth
+  -FirebaseFirestore _fireStore
+  +GoogleSignIn googleSignIn
+  +bool isGoogleSignInInitialized
+  +dynamic signInWithEmailandPassword()
+  +dynamic signUpWithEmailandPassword()
+  +dynamic signOut()
+  +User? getCurrentUser()
+  +dynamic sendEmailVerification()
+  +dynamic initializeGoogleSignIn()
+  +dynamic ensureGoogleSignInInitialized()
+  +dynamic signInWithGoogle()
+}
+
+
+class "caa_test::services::auth::login_or_register.dart::LoginOrRegister" {
+  +State<LoginOrRegister> createState()
+}
+
+class "caa_test::services::auth::login_or_register.dart::_LoginOrRegisterState" {
+  +bool showLoginPage
+  +void togglePages()
+  +Widget build()
+}
+
+
+
+@enduml
