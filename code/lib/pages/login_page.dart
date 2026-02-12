@@ -1,11 +1,11 @@
-import 'package:caa_test/Services/auth/authService.dart';
+import 'package:caa_test/Services/auth/auth_service.dart';
 import 'package:caa_test/components/my_button.dart';
 import 'package:caa_test/components/my_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'register_page.dart'; // Assicurati di importare la RegisterPage
+import 'register_page.dart';
 
 class LoginPage extends StatefulWidget {
   final void Function()? onTap;
@@ -36,7 +36,6 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
         );
-        await FirebaseAuth.instance.signOut();
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(

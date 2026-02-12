@@ -20,13 +20,13 @@ class StickerFolderView extends StatelessWidget {
 
   const StickerFolderView({
 
-    Key? key,
+    super.key,
 
     required this.folder,
 
     required this.onStickerSelected,
 
-  }) : super(key: key);
+  });
 
 
 

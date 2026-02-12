@@ -1,15 +1,13 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
- //   id("com.android.application") version "8.3.0" apply false
-   // id("org.jetbrains.kotlin.android") version "1.9.10" apply false
-
+    id("com.google.gms.google-services")
 
 }
 
 android {
     namespace = "com.example.caa_test"
-    compileSdk = 35
+    compileSdk = 33
 
     defaultConfig {
         applicationId = "com.example.caa_test"
@@ -31,12 +29,13 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
+    ndkVersion = "28.2.13676358"
 }
 
 dependencies {
@@ -47,4 +46,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation(platform("com.google.firebase:firebase-bom:34.8.0"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("androidx.credentials:credentials:1.3.0")
+    implementation("androidx.credentials:credentials-play-services-auth:1.3.0")
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
 }

@@ -17,13 +17,13 @@ import 'sticker_folder_view.dart';
 class StickerPicker extends StatefulWidget {
   final Function(String stickerUrl, String stickerName) onStickerSelected;
 
-  const StickerPicker({Key? key, required this.onStickerSelected}) : super(key: key);
+  const StickerPicker({super.key, required this.onStickerSelected});
 
   @override
-  _StickerPickerState createState() => _StickerPickerState();
+  StickerPickerState createState() => StickerPickerState();
 }
 
-class _StickerPickerState extends State<StickerPicker> {
+class StickerPickerState extends State<StickerPicker> {
   final Map<String, FolderContent> localFolders = {};
   FolderContent? firebaseUserFolder;
 

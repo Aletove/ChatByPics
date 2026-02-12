@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:caa_test/Services/auth/authService.dart';
+import 'package:caa_test/Services/auth/auth_service.dart';
 import 'package:caa_test/pages/chat_page.dart';
 import 'package:caa_test/pages/register_page.dart';
 import 'package:caa_test/pages/setting_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:caa_test/pages/SearchPage.dart';
+import 'package:caa_test/pages/search_page.dart';
 import 'package:caa_test/pages/friend_request_page.dart';
 
 import 'login_page.dart';
@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
           allowedContacts = List<String>.from(data['allowedContacts'] ?? []);
 
           // Nuovo: Recupero BCC se il tutor ha una lista "bccUsers"
-          if (data != null && data.containsKey('bccUsers')) {
+          if (data.containsKey('bccUsers')) {
             List<String> bccUserIds = List<String>.from(data['bccUsers'] as List? ?? []);
             allowedContacts.addAll(bccUserIds);
           }
@@ -285,7 +285,6 @@ class _HomePageState extends State<HomePage> {
         List<DocumentSnapshot> docs = snapshot.data!.docs;
         List<DocumentSnapshot> tutors = [];
         Map<String, List<DocumentSnapshot>> tutorBccMap = {};
-        List<DocumentSnapshot> nonTutorNonBcc = [];
 
         if (isTutor) {
 

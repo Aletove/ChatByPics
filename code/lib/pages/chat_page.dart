@@ -1,4 +1,4 @@
-import 'package:caa_test/pages/UserManagementPage.dart';
+import 'package:caa_test/pages/user_management_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:caa_test/components/chat_bubble.dart';
 import 'package:caa_test/components/my_text_field.dart';
@@ -7,7 +7,6 @@ import 'package:caa_test/model/sticker_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
 class ChatPage extends StatefulWidget {

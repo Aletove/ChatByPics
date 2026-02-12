@@ -12,11 +12,11 @@ class UserChatManagementPage extends StatefulWidget {
   });
 
   @override
-  _UserChatManagementPageState createState() =>
-      _UserChatManagementPageState();
+  UserChatManagementPageState createState() =>
+      UserChatManagementPageState();
 }
 
-class _UserChatManagementPageState extends State<UserChatManagementPage> {
+class UserChatManagementPageState extends State<UserChatManagementPage> {
   Map<String, bool> _userSelection = {}; // Stato della selezione (UID -> bool)
   Map<String, String> _userDisplayNames = {}; // Mappa UID -> Nome visualizzato (Nome Cognome o email)
   List<String> _tutorFriends = []; // Lista degli amici del tutor
@@ -59,9 +59,9 @@ class _UserChatManagementPageState extends State<UserChatManagementPage> {
           for (var doc in usersSnapshot.docs) {
             String uid = doc.id;
             Map<String, dynamic>? data = doc.data();
-            String nome = data?['nome'] ?? '';
-            String cognome = data?['cognome'] ?? '';
-            String email = data?['email'] ?? 'No email';
+            String nome = data['nome'] ?? '';
+            String cognome = data['cognome'] ?? '';
+            String email = data['email'] ?? 'No email';
             String displayName = (cognome.isNotEmpty && nome.isNotEmpty) ? '$cognome $nome' : email;
 
             _userDisplayNames[uid] = displayName;
